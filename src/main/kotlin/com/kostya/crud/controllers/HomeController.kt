@@ -4,6 +4,7 @@ import com.kostya.crud.dto.PostDto
 import com.kostya.crud.dto.TagDto
 import com.kostya.crud.services.PostService
 import com.kostya.crud.services.TagService
+import org.springframework.data.domain.Pageable
 import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
@@ -16,10 +17,10 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/")
 class HomeController (val posts: PostService, val tags: TagService) {
     @GetMapping
-    fun sayHi() : String =
+    fun sayHi(page: Pageable) : String =
     """
         Hi from spring!
-        Posts are: ${posts.readAll()}    
+        Posts are: ${posts.readAll(page)}    
     """.trimIndent()
 
     @PostMapping
