@@ -4,6 +4,7 @@ import com.kostya.crud.dto.PostDto
 import com.kostya.crud.dto.TagDto
 import com.kostya.crud.services.PostService
 import com.kostya.crud.services.TagService
+import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
@@ -23,6 +24,9 @@ class HomeController (val posts: PostService, val tags: TagService) {
 
     @PostMapping
     fun savePost(@RequestBody dto: PostDto) = posts.save(dto)
+
+    @DeleteMapping
+    fun deletePost(@RequestParam postId: Long) = posts.delete(postId)
 
     @PostMapping("/tag")
     fun saveTag(@RequestBody tag: TagDto) = tags.saveTag(tag)
